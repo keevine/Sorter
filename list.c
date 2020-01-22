@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "list.h"
+#include "bst.h"
 
 List new_list (void) {
     List new = malloc(sizeof(struct list_rep));
@@ -47,4 +48,12 @@ void show_list (List L) {
         curr = curr->next;
     }
     printf("X\n");
+}
+
+void compare_list (List L, Tree T) {
+    Node curr = L->head;
+    while (curr != NULL) {
+        insert_tree_node(T, curr);
+        curr = curr->next;
+    }
 }

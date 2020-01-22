@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "list.h"
+#include "bst.h"
 
 
 int main (void) {
@@ -24,6 +25,8 @@ int main (void) {
 
     show_list(list);
 
+    Tree name_tree = create_empty_tree();
+    compare_list(list, name_tree);
 
 
 
