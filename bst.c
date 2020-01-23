@@ -26,9 +26,10 @@ Tree insert_tree_node (Tree T, Node node) {
         // empty tree
         return create_tree_node(node);
     } else {
-        if (prompt(T, node) == 1) {
+        int input = prompt(T, node);
+        if (input == 1) {
             T->left = insert_tree_node(T->left, node);
-        } else if (prompt(T, node) == 2) {
+        } else if (input == 2) {
             T->right = insert_tree_node(T->right, node);
         }
     }
@@ -43,9 +44,9 @@ int prompt (Tree T, Node node) {
     printf("\t2) %s\n", name);
 
     int input = 0;
-    while (input != 1 || input != 2) {
+    while (input != 1 && input != 2) {
         scanf("%d", &input);
-        if (input != 1 || input != 2) {
+        if (input != 1 && input != 2) {
             printf("Error - didn't enter the number 1 or 2. Try again.\n");
         }
     }

@@ -18,27 +18,15 @@ int main (void) {
         if (name[len-2] = '\n') {
             name[len-2] = '\0';             // remove trailing newline
         }
-        printf("name is %s\n", name);
         Node node = create_node(name);
         append_node(list, node);
     }
 
-    show_list(list);
-
     Tree name_tree = create_empty_tree();
-    compare_list(list, name_tree);
+    name_tree = compare_list(list, name_tree);
+    printf("\nYour selections ranked in order: \n");
+    print_in_order(name_tree);
 
-
-
-    /*
-    Node node = create_node("first");
-    append_node(list, node);
-    Node nodee = create_node("second");
-    append_node(list, nodee);
-    Node third = create_node("testing asdasd");
-    append_node(list, third);
-    show_list(list);
-    */
     fclose(input);
 
     return 0;
