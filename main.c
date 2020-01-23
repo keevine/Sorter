@@ -23,9 +23,14 @@ int main (void) {
     }
 
     Tree name_tree = create_empty_tree();
-    name_tree = compare_list(list, name_tree);
+    Tree_rep data = create_rep(name_tree);          // Data collection
+    name_tree = compare_list(list, name_tree, data);
     printf("\nYour selections ranked in order: \n");
     print_in_order(name_tree);
+
+    printf("\nNumber of comparisons: %d\n", data->num_comparisons);
+    printf("Height of tree: %d\n", tree_height(name_tree));
+
 
     fclose(input);
 

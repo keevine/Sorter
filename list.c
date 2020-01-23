@@ -50,10 +50,11 @@ void show_list (List L) {
     printf("X\n");
 }
 
-Tree compare_list (List L, Tree T) {
+Tree compare_list (List L, Tree T, Tree_rep data) {
     Node curr = L->head;
     while (curr != NULL) {
-        T = insert_tree_node(T, curr);
+        T = insert_tree_node(T, curr, data);
+
         curr = curr->next;
     }
     return T;

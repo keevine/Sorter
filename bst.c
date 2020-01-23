@@ -21,22 +21,22 @@ Tree create_tree_node (Node node) {
 // and insert accordingly.
 // If user prefers node over the items in the tree, insert left
 // If user prefers items in tree over node, insert right
-Tree insert_tree_node (Tree T, Node node) {
+Tree insert_tree_node (Tree T, Node node, Tree_rep data) {
     if (T == NULL) {
         // empty tree
         return create_tree_node(node);
     } else {
-        int input = prompt(T, node);
+        int input = prompt(T, node, data);
         if (input == 1) {
-            T->left = insert_tree_node(T->left, node);
+            T->left = insert_tree_node(T->left, node, data);
         } else if (input == 2) {
-            T->right = insert_tree_node(T->right, node);
+            T->right = insert_tree_node(T->right, node, data);
         }
     }
     return T;
 }
 
-int prompt (Tree T, Node node) {
+int prompt (Tree T, Node node, Tree_rep data) {
     char name[MAX_NAME_LEN];
     strncpy(name, T->node->name, MAX_NAME_LEN);
     printf("Select the best option out of the two: (Enter the number 1 or 2)\n");
@@ -50,7 +50,7 @@ int prompt (Tree T, Node node) {
             printf("Error - didn't enter the number 1 or 2. Try again.\n");
         }
     }
-
+    data->num_comparisons++;
     return input;
 }
 
@@ -61,4 +61,26 @@ void print_in_order (Tree T) {
     print_in_order(T->left);
     printf("%s\n", T->node->name);
     print_in_order(T->right);
+}
+
+// Returns the maximum height of the tree and stores in the tree rep struct
+int tree_height (Tree T) {
+    // base case
+    if (T == NULL) {
+        return 0;
+    }
+    int left_height = tree_height(T->left);
+    int right_height = tree_height(T->right);
+    if (left_height > right_height) {
+        return left_height + 1;
+    } else {
+        return right_height + 1;
+    }
+}
+
+Tree_rep create_rep (Tree T) {
+    Tree_rep data = malloc(sizeof(struct tree_rep));
+    data->root = T;
+    data->height = tree_height(T);
+    data->num_comparisons = 0;
 }

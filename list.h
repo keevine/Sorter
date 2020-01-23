@@ -2,6 +2,7 @@
 #define LIST_H
 
 typedef struct tree_node *Tree;
+typedef struct tree_rep *Tree_rep;
 
 #define MAX_NAME_LEN 128
 
@@ -24,7 +25,7 @@ List new_list (void);
 Node create_node (char name[MAX_NAME_LEN]);
 void append_node (List L, Node n);
 void show_list (List L);
-Tree compare_list (List L, Tree T);
+Tree compare_list (List L, Tree T, Tree_rep rep);
 
 
 
