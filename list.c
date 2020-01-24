@@ -59,3 +59,42 @@ Tree compare_list (List L, Tree T, Tree_rep data) {
     }
     return T;
 }
+
+Node get_prev_tail (List L) {
+    assert(L != NULL);
+    if (L->size == 0 || L->size == 1) {
+        // There is no previous node if only one or no items exist in the list
+        return NULL;
+    }
+    Node curr = L->head;
+    while (curr->next != L->tail) {
+        // loop until curr's next is the last item
+        curr = curr->next;
+    }
+    return curr;
+}
+
+void remove_tail (List L) {
+    if (L->size == 0) {
+        // empty list
+        return;
+    } else if (L->size == 1) {
+        // single element in list
+        L->tail = NULL;
+        L->head = NULL;
+    } else {
+        Node prev = get_prev_tail(L);
+        L->tail = prev;
+        prev->next = NULL;
+    }
+    free(L->tail);
+    L->size--;
+}
+
+void delete_list (List L) {
+    assert(L != NULL);
+    while (L->size > 0) {
+        remove_tail(L);
+    }
+    free(L);
+}

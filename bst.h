@@ -27,6 +27,8 @@ int prompt (Tree T, Node node, Tree_rep data);
 void print_in_order (Tree T);
 int tree_height (Tree T);
 Tree_rep create_rep (Tree T);
+void delete_tree (Tree T);
+void delete_tree_data (Tree_rep data);
 
 
 #endif

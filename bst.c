@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #include "bst.h"
 #include "list.h"
@@ -83,4 +84,19 @@ Tree_rep create_rep (Tree T) {
     data->root = T;
     data->height = tree_height(T);
     data->num_comparisons = 0;
+}
+
+void delete_tree (Tree T) {
+    if (T == NULL) {
+        // base case
+        return;
+    }
+    delete_tree(T->left);
+    delete_tree(T->right);
+    free(T);
+}
+
+void delete_tree_data (Tree_rep data) {
+    assert(data != NULL);
+    free(data);
 }

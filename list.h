@@ -26,6 +26,9 @@ Node create_node (char name[MAX_NAME_LEN]);
 void append_node (List L, Node n);
 void show_list (List L);
 Tree compare_list (List L, Tree T, Tree_rep rep);
+Node get_prev_tail (List L);
+void remove_tail (List L);
+void delete_list (List L);
 
 
 

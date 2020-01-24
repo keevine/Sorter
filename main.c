@@ -1,4 +1,4 @@
-
+// Written by Kevin Chau on 24.01.2020
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,7 +8,7 @@
 
 
 int main (void) {
-
+    
     FILE *input = fopen("names.txt", "r");
     List list = new_list();
 
@@ -30,7 +30,9 @@ int main (void) {
 
     printf("\nNumber of comparisons: %d\n", data->num_comparisons);
     printf("Height of tree: %d\n", tree_height(name_tree));
-
+    delete_list(list);
+    delete_tree(name_tree);
+    delete_tree_data(data);
 
     fclose(input);
 
