@@ -54,7 +54,7 @@ Tree compare_list (List L, Tree T, Tree_rep data) {
     Node curr = L->head;
     while (curr != NULL) {
         T = insert_tree_node(T, curr, data);
-
+        check_balanced_tree(T);
         curr = curr->next;
     }
     return T;

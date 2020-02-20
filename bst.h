@@ -29,6 +29,11 @@ int tree_height (Tree T);
 Tree_rep create_rep (Tree T);
 void delete_tree (Tree T);
 void delete_tree_data (Tree_rep data);
+void print_level_order (Tree T);
+void print_given_level (Tree T, int level);
+Tree rotate_right (Tree T);
+Tree rotate_left (Tree T);
+void check_balanced_tree (Tree T);
 
 
 #endif

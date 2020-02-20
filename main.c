@@ -8,7 +8,7 @@
 
 
 int main (void) {
-    
+
     FILE *input = fopen("names.txt", "r");
     List list = new_list();
 
@@ -27,9 +27,13 @@ int main (void) {
     name_tree = compare_list(list, name_tree, data);
     printf("\nYour selections ranked in order: \n");
     print_in_order(name_tree);
+    printf("PRINTING IN LEVEL ORDER:\n");
+    print_level_order(name_tree);
+    printf("//////////////////\n");
 
     printf("\nNumber of comparisons: %d\n", data->num_comparisons);
     printf("Height of tree: %d\n", tree_height(name_tree));
+
     delete_list(list);
     delete_tree(name_tree);
     delete_tree_data(data);

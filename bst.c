@@ -100,3 +100,58 @@ void delete_tree_data (Tree_rep data) {
     assert(data != NULL);
     free(data);
 }
+
+void print_level_order (Tree T) {
+    int height = tree_height(T);
+    for (int i = 0; i <= height; i++) {
+        printf("LEVEL %d\n", i);
+        print_given_level(T, i);
+        printf("\n");
+    }
+}
+
+void print_given_level (Tree T, int level) {
+    if (T == NULL) {
+        return;
+    }
+    if (level == 1) {
+        // printing the root node
+        printf("%s -> ", T->node->name);
+    } else if (level > 1){
+        // printing all subtrees
+        print_given_level(T->left, level - 1);
+        print_given_level(T->right, level - 1);
+    }
+}
+
+Tree rotate_right (Tree T) {
+    Tree sub_left = T->left;
+    Tree sub_left_right = sub_left->right;
+
+    sub_left->right = T;
+    T->left = sub_left_right;
+
+    return sub_left;
+}
+
+Tree rotate_left (Tree T) {
+    Tree sub_right = T->right;
+    Tree sub_right_left = sub_right->left;
+
+    sub_right->left = T;
+    T->right = sub_right_left;
+
+    return sub_right;
+}
+
+void check_balanced_tree (Tree T) {
+    if (T == NULL) {
+        return;
+    } else if (tree_height(T->left) - tree_height(T->right) >= 2) {
+        T = rotate_right(T);
+    } else if (tree_height(T->right) - tree_height(T->left) >= 2) {
+        T = rotate_left(T);
+    }
+    check_balanced_tree(T->left);
+    check_balanced_tree(T->right);
+}
